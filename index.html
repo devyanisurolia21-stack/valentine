@@ -1,135 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Be My Valentine ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Abhishek ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Poppins, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      animation: pop 0.6s ease;
-    }
-
-    h1 {
-      color: #ff4d6d;
-    }
-
-    .buttons {
-      margin-top: 30px;
-      position: relative;
-      height: 120px;
-    }
-
-    button {
-      padding: 12px 25px;
-      font-size: 16px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      position: absolute;
-    }
-
-    #yesBtn {
-      background: #ff4d6d;
-      color: white;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    #noBtn {
-      background: #ddd;
-      color: #333;
-      left: 30%;
-      top: 60px;
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .heart {
-      position: fixed;
-      bottom: -20px;
-      font-size: 24px;
-      animation: float 4s linear forwards;
-    }
-
-    @keyframes float {
-      to {
-        transform: translateY(-120vh);
-        opacity: 0;
-      }
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Poppins,sans-serif;
+  overflow:hidden;
+}
+.card{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  width:90%;
+  max-width:420px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.2);
+}
+h1{color:#ff4d6d;}
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  background:#ff4d6d;
+  color:white;
+  margin-top:20px;
+}
+#noBtn{
+  background:#ddd;
+  color:#333;
+  position:absolute;
+}
+.hidden{display:none;}
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:24px;
+  animation:float 4s linear forwards;
+}
+@keyframes float{
+  to{transform:translateY(-120vh);opacity:0;}
+}
+.buttons{
+  margin-top:30px;
+  position:relative;
+  height:120px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card" id="card">
-    <h1>Will you be my Valentine? 💖</h1>
-    <p>You don’t really have a choice 😌</p>
-
-    <div class="buttons">
-      <button id="yesBtn">YES 💘</button>
-      <button id="noBtn">NO 🙄</button>
-    </div>
+<div class="card" id="step1">
+  <h1>Abhishek 💖</h1>
+  <p>Will you be my Valentine?</p>
+  <div class="buttons">
+    <button onclick="yes()">YES 💘</button>
+    <button id="noBtn">NO 🙄</button>
   </div>
+</div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const card = document.getElementById("card");
+<div class="card hidden" id="step2">
+  <h1>YAYYYY 😍</h1>
+  <p>Abhishek, you just made me the happiest person alive 🥹❤️</p>
+  <button onclick="next()">Next 💌</button>
+</div>
 
-    noBtn.addEventListener("mouseover", moveButton);
-    noBtn.addEventListener("click", moveButton);
+<div class="card hidden" id="step3">
+  <h1>For You, Abhishek 💕</h1>
+  <p>
+    Every day with you feels special.<br>
+    You make me smile, laugh,<br>
+    and feel loved in ways I never imagined.<br><br>
+    I’m so grateful to have you 🤍
+  </p>
+  <button onclick="final()">One last thing 👀</button>
+</div>
 
-    function moveButton() {
-      noBtn.style.left = Math.random() * 250 + "px";
-      noBtn.style.top = Math.random() * 100 + "px";
-    }
+<div class="card hidden" id="step4">
+  <h1>I Love You Abhishek ❤️</h1>
+  <p>
+    Today, tomorrow,<br>
+    and always — it’s you 💖
+  </p>
+</div>
 
-    yesBtn.addEventListener("click", () => {
-      card.innerHTML = `
-        <h1>YAYYYY 😍</h1>
-        <p>You just made me the happiest person alive 🥹❤️</p>
-      `;
-      startHearts();
-    });
+<script>
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.left=Math.random()*250+"px";
+  noBtn.style.top=Math.random()*100+"px";
+});
 
-    function startHearts() {
-      setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-      }, 300);
-    }
-  </script>
+function yes(){
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+  hearts();
+}
+function next(){
+  document.getElementById("step2").classList.add("hidden");
+  document.getElementById("step3").classList.remove("hidden");
+}
+function final(){
+  document.getElementById("step3").classList.add("hidden");
+  document.getElementById("step4").classList.remove("hidden");
+}
+function hearts(){
+  setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),4000);
+  },300);
+}
+</script>
 
 </body>
 </html>
